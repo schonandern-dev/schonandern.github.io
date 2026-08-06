@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1100" height="220" viewBox="0 0 1100 220"
+     role="img" aria-label="This Way, Please">
+  <title>This Way, Please</title>
+  <style>
+    .wordmark {
+      font-family: "Brittany Signature", "Great Vibes", "Allura",
+                   "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+      font-size: 142px;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: -2px;
+      fill: #d82635;
+    }
+  </style>
+  <text class="wordmark"
+        x="58" y="151"
+        textLength="987"
+        lengthAdjust="spacingAndGlyphs">This Way, Please</text>
+</svg>

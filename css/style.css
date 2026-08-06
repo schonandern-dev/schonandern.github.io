@@ -63,8 +63,10 @@ img {
 }
 
 .site-header .logo img {
-    height: 140px;
-    width: auto;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    transform: rotate(-4deg);
 }
 
 /* ---------- Main content ---------- */
