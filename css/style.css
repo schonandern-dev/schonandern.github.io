@@ -101,6 +101,110 @@ main {
     margin-bottom: 1.5rem;
 }
 
+.page p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.about-services {
+    margin-top: 2.5rem;
+}
+
+.about-services strong {
+    font-size: 1.25rem;
+}
+
+.about-photo {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.about-photo img {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ---------- Newsletter page ---------- */
+.newsletter-intro {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.newsletter-intro a {
+    text-decoration: underline;
+}
+
+.newsletter-loading {
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+.newsletter-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.newsletter-feature img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+}
+
+.newsletter-feature h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.newsletter-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    border-top: 1px solid #ddd;
+    padding-top: 2.5rem;
+}
+
+.newsletter-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.newsletter-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.newsletter-date {
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+.newsletter-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.newsletter-read-link {
+    font-size: 0.95rem;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+    .newsletter-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
     padding: 1.5rem 2rem;

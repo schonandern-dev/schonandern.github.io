@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter – Nicole Carola Schönander</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-left">
+            <a href="./about.html">About</a>
+            <a href="./communications.html">Communications</a>
+        </nav>
+
+        <a href="./" class="logo">
+            <img src="images/ThisWayPleaseLogo.png" alt="This Way, Please">
+        </a>
+
+        <nav class="nav-right">
+            <a href="./styling.html">Styling</a>
+            <a href="./newsletter.html">Newsletter</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <h1>Newsletter</h1>
+        <p class="newsletter-intro">
+            This Way, Please is also a weekly Substack on New York dining, nightlife, style, and books.
+            <a href="https://thiswayplease.substack.com/" target="_blank" rel="noopener">Read it on Substack &rarr;</a>
+        </p>
+
+        <div id="newsletter-embed"></div>
+    </main>
+
+    <script>
+        (function () {
+            const FEED_URL = "https://thiswayplease.substack.com/feed";
+            const PROXY_URL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(FEED_URL);
+            const container = document.getElementById("newsletter-embed");
+
+            function formatDate(pubDate) {
+                const d = new Date(pubDate.replace(" ", "T") + "Z");
+                if (isNaN(d)) return "";
+                return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+            }
+
+            function firstImageFromContent(html) {
+                const match = html && html.match(/<img[^>]+src="([^"]+)"/);
+                return match ? match[1] : "";
+            }
+
+            function postImage(item) {
+                return (item.enclosure && item.enclosure.link) || item.thumbnail || firstImageFromContent(item.content) || "";
+            }
+
+            function buildPostCard(item, featured) {
+                const article = document.createElement("article");
+                article.className = featured ? "newsletter-feature" : "newsletter-item";
+
+                const img = postImage(item);
+                if (img) {
+                    const imageEl = document.createElement("img");
+                    imageEl.src = img;
+                    imageEl.alt = item.title || "";
+                    article.appendChild(imageEl);
+                }
+
+                const body = document.createElement("div");
+                body.className = "newsletter-item-body";
+
+                const date = document.createElement("p");
+                date.className = "newsletter-date";
+                date.textContent = formatDate(item.pubDate);
+                body.appendChild(date);
+
+                const title = document.createElement(featured ? "h2" : "h3");
+                title.textContent = item.title || "";
+                body.appendChild(title);
+
+                if (item.description) {
+                    const desc = document.createElement("p");
+                    desc.className = "newsletter-description";
+                    desc.textContent = item.description;
+                    body.appendChild(desc);
+                }
+
+                const link = document.createElement("a");
+                link.href = item.link;
+                link.target = "_blank";
+                link.rel = "noopener";
+                link.className = "newsletter-read-link";
+                link.textContent = "Read the full post →";
+                body.appendChild(link);
+
+                article.appendChild(body);
+                return article;
+            }
+
+            function renderPosts(items) {
+                container.innerHTML = "";
+
+                const wrapper = document.createElement("div");
+                wrapper.className = "newsletter-wrapper";
+                wrapper.appendChild(buildPostCard(items[0], true));
+
+                if (items.length > 1) {
+                    const list = document.createElement("div");
+                    list.className = "newsletter-list";
+                    items.slice(1, 4).forEach(function (item) {
+                        list.appendChild(buildPostCard(item, false));
+                    });
+                    wrapper.appendChild(list);
+                }
+
+                container.appendChild(wrapper);
+            }
+
+            function renderFallbackEmbed() {
+                container.innerHTML = "";
+                const iframe = document.createElement("iframe");
+                iframe.src = "https://thiswayplease.substack.com/embed";
+                iframe.width = "100%";
+                iframe.height = "320";
+                iframe.style.border = "1px solid #eee";
+                iframe.style.background = "white";
+                iframe.setAttribute("frameborder", "0");
+                iframe.setAttribute("scrolling", "no");
+                container.appendChild(iframe);
+            }
+
+            container.innerHTML = '<p class="newsletter-loading">Loading the latest posts&hellip;</p>';
+
+            fetch(PROXY_URL)
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data.status !== "ok" || !data.items || !data.items.length) {
+                        throw new Error("Feed unavailable");
+                    }
+                    renderPosts(data.items);
+                })
+                .catch(function () {
+                    renderFallbackEmbed();
+                });
+        })();
+    </script>
+</body>
+</html>
