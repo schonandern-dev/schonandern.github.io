@@ -30,6 +30,110 @@
 
     <main class="page">
         <h1>Styling</h1>
+
+        <section class="offering">
+            <h2>My Offering</h2>
+            <ul class="offering-list">
+                <li>
+                    <details>
+                        <summary>Closet edits</summary>
+                        <p>A closet edit starts with what you already own — separating what earns its place from what doesn't, and understanding why. It's the first step before any new purchase, secondhand or otherwise.</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>In-home consultations</summary>
+                        <p>We work through your space and your wardrobe together, building outfits from pieces you already own and pinpointing the handful of things actually worth sourcing.</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>Virtual consultations</summary>
+                        <p>The same process, done remotely — over photos, video, or a call. A lower-lift way to start if you're not local, or just want a first pass before going deeper.</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>Full look pulls</summary>
+                        <p>Complete, ready-to-wear looks for a specific moment. Quality secondhand comes first; full price is saved for the pieces worth investing in for years to come.</p>
+                    </details>
+                </li>
+            </ul>
+        </section>
+
+        <p class="shopmy-link">
+            Link to my <a href="YOUR-SHOPMY-URL" target="_blank" rel="noopener">ShopMy</a>, where you can see collections and links.
+        </p>
+
+        <section class="style-edits">
+            <div class="carousel" id="edit-carousel">
+                <button type="button" class="carousel-btn prev" aria-label="Previous look">&#8249;</button>
+
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Fall%2024%20copy.png" alt="Fall 24"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Here%20comes%20spring!%20copy.png" alt="Here Comes Spring!"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Kelly's%20Beach%20Trip%20copy.png" alt="Kelly's Beach Trip"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Men's%20Coachella%20Look%202026%20copy.png" alt="Men's Coachella Look 2026"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Men's%20Summer%20Wedding%20look%20copy.png" alt="Men's Summer Wedding Look"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Men's%20Wet%20Hot%20Summer%20copy.png" alt="Men's Wet Hot Summer"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/runners_%20copy.png" alt="Runners"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Seaport%20afternoon%20copy.jpg" alt="Seaport Afternoon"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/summer%20after%20running%20fit%20copy.png" alt="Summer After Running Fit"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Sunny%20spring%20afternoon_%20copy.png" alt="Sunny Spring Afternoon"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Time%20Again%20Spring%202026%20copy.jpg" alt="Time Again Spring 2026"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Wedding%20Look%20for%20Kim%20copy.png" alt="Wedding Look for Kim"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Women's%20Coachelle%20Look%202026%20copy.png" alt="Women's Coachella Look 2026"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Women's%20Fake%20Spring%20copy.png" alt="Women's Fake Spring"></figure>
+                        <figure class="edit"><img src="images/Nicole's%20Website%20style%20coursel/Women's%20Wet%20Hot%20Summer%20copy.png" alt="Women's Wet Hot Summer"></figure>
+                    </div>
+                </div>
+
+                <button type="button" class="carousel-btn next" aria-label="Next look">&#8250;</button>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonial-list">
+                <blockquote>
+                    <p>“Nicole told me not to buy half the things I sent her, which is probably why I trust her.”</p>
+                    <footer>Alyssa, New York</footer>
+                </blockquote>
+
+                <blockquote>
+                    <p>“She found the exact version of what I wanted at a price I never would have found myself.”</p>
+                    <footer>Client, New York</footer>
+                </blockquote>
+
+                <blockquote>
+                    <p>“I actually wear everything she told me to buy.”</p>
+                    <footer>Client, Brooklyn</footer>
+                </blockquote>
+            </div>
+        </section>
     </main>
+
+    <script>
+        (function () {
+            const track = document.querySelector('#edit-carousel .carousel-track');
+            const slides = track.children;
+            let index = 0;
+
+            function update() {
+                track.style.transform = 'translateX(-' + (index * 100) + '%)';
+            }
+
+            document.querySelector('#edit-carousel .prev').addEventListener('click', function () {
+                index = (index - 1 + slides.length) % slides.length;
+                update();
+            });
+
+            document.querySelector('#edit-carousel .next').addEventListener('click', function () {
+                index = (index + 1) % slides.length;
+                update();
+            });
+        })();
+    </script>
 </body>
 </html>
